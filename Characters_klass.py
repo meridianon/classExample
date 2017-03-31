@@ -17,6 +17,8 @@ class Character(object):
 		elif weapon == "Fist":
 			self.hp -=10
 		print("Characters hit:",self.hp,"damage")
+	def __eq__(self):
+		#equal obj
 
 
 class Weapon(object):
