@@ -8,22 +8,41 @@ class Character(object):
 	# def __init__(self):
 	#  	HP = self.hp
 	def delteAtr(self):
-		t = random.choice(self.hand)
-		print("Delete 1 hand", t)
+		print(self.hand)
+		del self.hand[0]
+		if not self.hand:
+			return ""
+		else:
+			return self.hand[0]
+	def Imposedebaf(self,arg):
+		if (arg == "Knife"):
+			if not self.hand:
+				print("You dont have hand")
+			else:
+				dh = self.delteAtr()
+				if not dh:
+					print("You dont have hand")
+				else:
+					print("You have only", dh,"hand")
+		elif arg == "Hammer":
+			t = self.head
+			t = False
+			print("You contusion")
+		else:
+			print("You injured")
 	def Hit(self,weapon):
-		if weapon == "Knife" or weapon == "Pistol" or weapon == "Hammer": 
+		if weapon != "Fist": 
 			self.hp -=30
-			self.delteAtr()
-		elif weapon == "Fist":
+			self.Imposedebaf(weapon)
+		else:
 			self.hp -=10
 		print("Characters hit:",self.hp,"damage")
-	def __eq__(self):
-		#equal obj
-
+		#sravnenie
 
 class Weapon(object):
 	"""docstring for Weapon"""
 	Weapons = ["Knife","Pistol","Hammer", "Fist"]
-	def __init__(self):
-		weap = random.choice(self.Weapons) 
-		print("Your weapon:",weap)
+	def getWeapon(self):
+		t = str(random.choice(self.Weapons))
+		print("Your weapon:",t)
+		return t
