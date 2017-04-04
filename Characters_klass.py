@@ -34,19 +34,7 @@ class Character(object):
 			if self.hp < 0:
 				self.printGameOver()
 			else:
-				k = 0
-				i = 0
-				while 1:
-					if k == 10:
-						break
-					else:
-						k+=1
-						time.sleep(0.1)
-						self.hp -= 20
-						if self.hp < 0:
-							self.printGameOver()
-						else:
-							print("You loos:", self.hp, "Hp") #- 200 hp with 10 sec
+				self.TimerLooseHp(10,0.1)
 	def Hit(self,weapon):
 		if self.hp <0:
 			self.printGameOver()
@@ -62,8 +50,24 @@ class Character(object):
 				print("Characters :", self.hp ,"damage")
 		#sravnenie
 	def printGameOver(self):
-			print("You died")
-			print("GAME OVER")
+		print("You died")
+		print("GAME OVER")
+	def TimerLooseHp(self,arg1,arg2):
+		k = 0
+		count = arg1
+		delay = arg2
+		i = 0
+		while 1:
+			if k == count:
+				break
+			else:
+				k+=1
+				time.sleep(delay)
+				self.hp -= 20
+				if self.hp < 0:
+					self.printGameOver()
+				else:
+					print("You loos:", self.hp, "Hp") #- 200 hp with 10 sec
 
 class Weapon(object):
 	"""docstring for Weapon"""
