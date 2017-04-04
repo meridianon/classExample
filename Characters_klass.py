@@ -1,4 +1,5 @@
-import random 
+import random, time
+import timefunct
 class Character(object):
 	"""docstring for Character"""
 	hand = ["right","left"]
@@ -30,14 +31,39 @@ class Character(object):
 			print("You contusion")
 		else:
 			print("You injured")
+			if self.hp < 0:
+				self.printGameOver()
+			else:
+				k = 0
+				i = 0
+				while 1:
+					if k == 10:
+						break
+					else:
+						k+=1
+						time.sleep(0.1)
+						self.hp -= 20
+						if self.hp < 0:
+							self.printGameOver()
+						else:
+							print("You loos:", self.hp, "Hp") #- 200 hp with 10 sec
 	def Hit(self,weapon):
-		if weapon != "Fist": 
-			self.hp -=30
-			self.Imposedebaf(weapon)
+		if self.hp <0:
+			self.printGameOver()
 		else:
-			self.hp -=10
-		print("Characters hit:",self.hp,"damage")
+			if weapon != "Fist": 
+				self.hp -=30
+				self.Imposedebaf(weapon)
+			else:
+				self.hp -=10
+			if self.hp < 0:
+				self.printGameOver()
+			else:
+				print("Characters :", self.hp ,"damage")
 		#sravnenie
+	def printGameOver(self):
+			print("You died")
+			print("GAME OVER")
 
 class Weapon(object):
 	"""docstring for Weapon"""
