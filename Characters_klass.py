@@ -6,6 +6,7 @@ class Character(object):
 	head = True 
 	Leg = ["right","left"]
 	hp = 5000
+	CoolectionTarget = [hand,head,Leg]
 	# def __init__(self):
 	#  	HP = self.hp
 	def delteAtr(self):
@@ -57,6 +58,7 @@ class Character(object):
 		count = arg1
 		delay = arg2
 		i = 0
+
 		while 1:
 			if k == count:
 				break
@@ -67,7 +69,53 @@ class Character(object):
 				if self.hp < 0:
 					self.printGameOver()
 				else:
-					print("You loos:", self.hp, "Hp") #- 200 hp with 10 sec
+					print("You lost:", self.hp, "Hp") #- 200 hp with 10 sec
+
+class MissCharacters(Character):
+	hp = 10500
+	# def __init__():
+	# 	while 1:
+	# 		r = random.randint(0, 1)
+
+	def Hit(self,weapon):
+		r = random.randint(0, 1)
+		if self.hp <0:
+			self.printGameOver()
+		elif r == 1:
+			self.MissHit()
+		elif r == 0:
+			if weapon != "Fist": 
+				self.hp -=30
+				self.Imposedebaf(weapon)
+			else:
+				self.hp -=10
+			if self.hp < 0:
+				self.printGameOver()
+			else:
+				print("Characters :", self.hp ,"damage")
+	def TimerLooseHp(self,arg1,arg2):
+		k = 0
+		count = arg1
+		delay = arg2
+		i = 0
+		while 1:
+			r = random.randint(0, 1)
+			if r == 1:
+				self.MissHit()
+			else:
+				if k == count:
+					break
+				else:
+					k+=1
+					time.sleep(delay)
+					self.hp -= 14
+					if self.hp < 0:
+						self.printGameOver()
+					else:
+						print("You lost:", self.hp, "Hp") #- 200 hp with 10 sec
+	def MissHit(self):
+		print("miss")
+		
 
 class Weapon(object):
 	"""docstring for Weapon"""

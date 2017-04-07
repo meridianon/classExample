@@ -3,5 +3,9 @@ from tkinter import *
 import time
 Weapon = ck.Weapon()
 Peny = ck.Character()
-Peny.Hit("Pistol")
+Charly = ck.MissCharacters()
+Charly.Hit(Weapon.getWeapon())
+Charly.Hit(Weapon.getWeapon())
+Charly.Hit(Weapon.getWeapon())
+Charly.Hit("Pistol",)
 print("_______________________")
