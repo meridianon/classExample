@@ -57,8 +57,6 @@ class Character(object):
 		k = 0
 		count = arg1
 		delay = arg2
-		i = 0
-
 		while 1:
 			if k == count:
 				break
@@ -73,9 +71,9 @@ class Character(object):
 
 class MissCharacters(Character):
 	hp = 10500
-	# def __init__():
-	# 	while 1:
-	# 		r = random.randint(0, 1)
+
+	# def __init__(self):
+	# 		self.Regeneration()
 
 	def Hit(self,weapon):
 		r = random.randint(0, 1)
@@ -97,26 +95,39 @@ class MissCharacters(Character):
 		k = 0
 		count = arg1
 		delay = arg2
-		i = 0
 		while 1:
-			r = random.randint(0, 1)
-			if r == 1:
-				self.MissHit()
+			if k == count:
+				break
 			else:
-				if k == count:
-					break
+				k+=1
+				time.sleep(delay)
+				self.hp -= 14
+				if self.hp < 0:
+					self.printGameOver()
 				else:
-					k+=1
-					time.sleep(delay)
-					self.hp -= 14
-					if self.hp < 0:
-						self.printGameOver()
-					else:
-						print("You lost:", self.hp, "Hp") #- 200 hp with 10 sec
+					print("You lost:", self.hp, "Hp") #- 200 hp with 10 sec	
+
 	def MissHit(self):
 		print("miss")
-		
+	def Regeneration(self):
 
+		while 1:
+			if self.hp >= 10500:
+				self.hp = 10500
+			else:
+				self.hp += 5
+				print("regen", self.hp)
+
+	def useBonus(self,arg):
+			self.hp += int(arg)
+			if self.hp >= 10500:
+				self.hp = 10500
+				print("You use med kit = ", arg)
+				print("You hp =", self.hp)
+			else:
+				print("You use med kit = ", arg)
+				print("You hp =", self.hp)
+		
 class Weapon(object):
 	"""docstring for Weapon"""
 	Weapons = ["Knife","Pistol","Hammer", "Fist"]
@@ -124,3 +135,14 @@ class Weapon(object):
 		t = str(random.choice(self.Weapons))
 		print("Your weapon:",t)
 		return t
+
+class BonusHP(object):
+	firstaid_kit_default = 200
+	firstaid_kit_max = 1000
+	firstaid_kit_min = 20
+	fak = [firstaid_kit_default, firstaid_kit_max, firstaid_kit_min]
+	def getBonus(self):
+		g = str(random.choice(self.fak))
+		return g
+		
+		
